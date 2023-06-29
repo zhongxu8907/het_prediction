@@ -1,0 +1,24 @@
+Description
+
+This function allows you to predict the heterosis of a given breed with other breeds.
+
+Usage
+
+calIBS(snp_lst,breeds)
+
+Arguments
+
+info<-read.table("barcode_id_0.009_order.txt",header=T,sep="\t",quote="",colClasses="character")
+snp<-read.table("genotype_output_maf_0_hwe.txt",header=T,sep="\t",quote="",comment.char="",check.names=FALSE)
+
+snp<-snp[,-1*(1:4)]
+breed<-unique(info$Breed)
+west_breed<-unlist(strsplit("D:L:Y", ":"))
+breeds<-c(west_breed,"MMS")
+snp_lst<-lapply(breeds,function(x)snp[,info$Breed==x])
+trait<-"genome"
+
+
+Examples
+
+calIBS(snp_lst,breeds)
